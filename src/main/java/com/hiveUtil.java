@@ -13,9 +13,7 @@ public class hiveUtil {
     //获取表字段
     public static List<String> getFieldByTableName(String dbTableName) throws SQLException, ClassNotFoundException {
         Connection conn = jdbcUtil.getConn();
-        System.out.println("创建连接成功");
         Statement stat = jdbcUtil.getStmt(conn);
-        System.out.println("创建命令成功");
         List<String> fields = new ArrayList<>();
         ResultSet res = stat.executeQuery("desc " + dbTableName);
         while (res.next()) {
@@ -26,6 +24,13 @@ public class hiveUtil {
         }
         jdbcUtil.closeFunc(conn,stat);
         return fields;
+    }
+    //执行sql
+    public static  void  updateTablebyTableName(String sql) throws SQLException, ClassNotFoundException {
+        Connection conn = jdbcUtil.getConn();
+        Statement stat = jdbcUtil.getStmt(conn);
+        stat.executeUpdate(sql);
+        jdbcUtil.closeFunc(conn,stat);
     }
 
 

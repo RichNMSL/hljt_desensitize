@@ -46,6 +46,7 @@ public class action {
                 sb.append(" from "+database+"."+prefix+entry.getKey()+")");
 
                 System.out.println(sb);
+                hiveUtil.updateTablebyTableName(sb.toString());
             }catch (Exception e){
                 e.printStackTrace();
             }
